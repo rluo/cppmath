@@ -79,7 +79,7 @@ int main() {
 
     if (IsKeyPressed(KEY_SPACE)) {
       for (auto &cell : cells) {
-        if (!cell.crossedOut && cell.color == LIGHTGRAY) {
+        if (!cell.crossedOut) {
           int r = dist(gen);
           int g = dist(gen);
           int b = dist(gen);
