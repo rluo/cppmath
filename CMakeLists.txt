@@ -1,9 +1,9 @@
 cmake_minimum_required(VERSION 3.14)
-project(RaylibProject)
+project(cppmath)
 
 # Add the vcpkg toolchain
 if(NOT DEFINED CMAKE_TOOLCHAIN_FILE)
-    set(CMAKE_TOOLCHAIN_FILE "/Users/xluo/git/vcpkg/scripts/buildsystems/vcpkg.cmake" CACHE STRING "Vcpkg toolchain file")
+    set(CMAKE_TOOLCHAIN_FILE "${VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake" CACHE STRING "Vcpkg toolchain file")
 endif()
 
 set(CMAKE_CXX_STANDARD 17)
@@ -35,7 +35,11 @@ foreach(SRC_FILE ${SRC_FILES})
     target_link_libraries(${EXECUTABLE_NAME} PRIVATE raylib)
     if(APPLE)
         target_link_libraries(${EXECUTABLE_NAME} PRIVATE "-framework OpenGL" "-framework Cocoa" "-framework IOKit" "-framework CoreVideo" glfw)
+    elseif(UNIX)
+        # Linux-specific linking
+        target_link_libraries(${EXECUTABLE_NAME} PRIVATE glfw GL X11 pthread dl libm)
     endif()
+
     # Add custom include directories if needed
     target_include_directories(${EXECUTABLE_NAME} PRIVATE ${PROJECT_SOURCE_DIR}/include)
 endforeach()
