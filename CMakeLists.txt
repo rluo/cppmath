@@ -37,7 +37,7 @@ foreach(SRC_FILE ${SRC_FILES})
         target_link_libraries(${EXECUTABLE_NAME} PRIVATE "-framework OpenGL" "-framework Cocoa" "-framework IOKit" "-framework CoreVideo" glfw)
     elseif(UNIX)
         # Linux-specific linking
-        target_link_libraries(${EXECUTABLE_NAME} PRIVATE glfw GL X11 pthread dl libm)
+        target_link_libraries(${EXECUTABLE_NAME} PRIVATE glfw GL X11 pthread dl)
     endif()
 
     # Add custom include directories if needed
