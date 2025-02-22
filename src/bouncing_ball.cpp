@@ -4,6 +4,7 @@ int main() {
   // Window dimensions
   const int screenWidth = 800;
   const int screenHeight = 600;
+  const float gravity = 0.0f;
 
   InitWindow(screenWidth, screenHeight, "Bouncing Ball in Bounding Box");
 
@@ -33,6 +34,8 @@ int main() {
         (ballPosition.y + ballRadius >= boundingBox.y + boundingBox.height)) {
       ballVelocity.y *= -1;  // Reverse Y direction
     }
+
+    ballVelocity.y += gravity;
 
     // Draw everything
     BeginDrawing();
